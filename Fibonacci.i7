@@ -1,0 +1,86 @@
+"Fibonacci" by Nathan
+
+Fibonacci is a kind of device.
+A Fibonacci has a number called goal.
+A Fibonacci has a number called answer1. 
+A Fibonacci has a number called answer2.
+
+[Entering On]
+EnteringOn is an action applying to one number and one thing.
+Understand "enter [number] on [device]" as EnteringOn.
+
+Check EnteringOn:
+	let N be the number understood;
+	if N > 12:
+		say "the calculator can't handle a number that big";
+		stop the action.
+
+Carry out EnteringOn:
+	let N be the number understood;
+	let D be the second noun;
+	now  the goal of D is N;
+	say "You entered [N] on [printed name of D]".
+	
+[Examining a Fibonacci calculator]
+Instead of examining a Fibonacci  (this is the modified examine Fibonacci rule):
+	say "The goal of the calculator is set to [goal of noun].";
+	let A be answer1 of noun;
+	let B be answer2 of noun;
+	say "The result of the calculation is [A + B].";
+	say "You can ENTER a new goal number ON [printed name of noun].";
+	say "You can CALC [printed name of noun] to get the answer.".	
+
+[---------------------------]	
+To decide what number is the known sequence of (N - a number):
+	if  there is an F corresponding to an X of N in the Table of Known Fibonacci Sequences:
+		decide on the F corresponding to an X of N in the Table of Known Fibonacci Sequences;
+	otherwise:
+		decide on -1.	
+
+Table of Known Fibonacci Sequences
+X (a number)	F(a number)
+0	0
+1	1
+2	1
+3	2
+4	3
+5	5
+
+[---------------------------]	
+[check the input before this]
+To decide what number is the fib of (N - a number):
+	let K be the known sequence of N;
+	if K > -1:
+		decide on K;
+	otherwise:
+		let N1 be N - 1;
+		let N2 be N - 2;
+		let A be the fib of N1;
+		let B be the fib of N2;
+		let C be A + B;
+		decide on C;
+		
+Calculating is an action applying to one thing.
+Understand "calc [device]" or "crank [device]" as Calculating.
+
+Check Calculating:
+	let N be the goal of noun;
+	if N > 12:
+		say "the calculator can't handle a number that big";
+		stop the action.
+
+Carry out Calculating:
+	let N be the goal of noun;
+	let N1 be N - 1;
+	let N2 be N - 2;
+	let A be the fib of N1;
+	let B be the fib of N2;
+	now answer1 of noun is A;
+	now answer2 of noun is B;
+	say "The result of the calculation is [A + B].".
+	
+
+[---------------------------]	
+Main is a room.  
+The player is in Main.
+Fib1 is a Fibonacci.  Fib1 is in Main.
