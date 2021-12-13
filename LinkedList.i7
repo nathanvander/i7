@@ -1,0 +1,66 @@
+"LinkedList" by Nathan
+
+[Challenge:  create a linked list.  Allow new links to be added, and traversal of the list.
+The trick is that this does not allow dynamic creation of objects, and it doesn't handle
+nulls well]
+
+Node is a kind of Thing.  The plural of Node is Nodes.
+Node has a number called depth.
+Node has a number called data.
+Node has a Node called next.
+InvalidNode is a Node.  The depth of InvalidNode is -1.
+The next of a Node is usually InvalidNode.
+
+[we can't dynamically create them so create a stock of 100 nodes ready to go.]
+StoreRoom is a room.
+100 Nodes are in the StoreRoom.
+
+LinkingTo is an action applying to one number and one thing.
+Understand "link [number] to [node]" as LinkingTo.
+
+To decide what node is the bottom of (L - a node):
+	let M be L;
+	let N be next of M;
+	if N is InvalidNode:
+		decide on M;
+	otherwise:
+		while N is not InvalidNode:
+			now M is N;
+			now N is next of M;
+		decide on M.
+
+To decide what Node is the Node constructed in (R - a room):
+	let L be a random Node in the StoreRoom;
+	now L is in R;
+	decide on L.
+	
+Carry out LinkingTo:
+	let N be the number understood;
+	let L be the second noun;
+	let A be the Node constructed in the location of the player;
+	let B be the bottom of L;
+	now the depth of A is the depth of B plus 1;
+	now the data of A is N;
+	now the next of B is A;
+	say "[N] added at a depth of [depth of A]".
+
+Traversal is an action applying to one thing.
+Understand "traverse [node]" as traversal.
+Understand "examine [node]" as traversal.
+
+Carry out Traversal:
+	let L be the noun;
+	say "[depth of L] =>  [data of L].";
+	let M be L;
+	let N be next of M;
+	while N is not InvalidNode:
+		now M is N;
+		say "[depth of M] =>  [data of M].";
+		now N is next of M;
+	say "You can add more nodes with LINK number TO node.".
+
+[------------------------]
+Main is a room.
+TopNode is a Node.
+TopNode is in Main.  The data of TopNode is 1.
+The player is in Main.
